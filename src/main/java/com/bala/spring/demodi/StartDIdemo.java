@@ -1,6 +1,6 @@
-package com.bala.reactivate.demodi;
+package com.bala.spring.demodi;
 
-public class StartService {
+public class StartDIdemo {
 
     public static void main(String[] args) {
 

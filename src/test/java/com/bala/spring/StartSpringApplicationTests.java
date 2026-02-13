@@ -1,10 +1,10 @@
-package com.bala.reactivate;
+package com.bala.spring;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ReactivateApplicationTests {
+class StartSpringApplicationTests {
 
 	@Test
 	void contextLoads() {

@@ -1,6 +1,18 @@
 spring:
   application:
     name: reactivate
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_SCHEMA:gb_servicedb}
+    username: ${MYSQL_USER:springservice}
+    password: ${MYSQL_PASSWORD:demo@123}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+application:
+  logFilePath: ${SUPPORT_VOLUME:E:\\devlab\\springlogs\\}
+  loglevel: DEBUG
 
 server:
   port: 8083
