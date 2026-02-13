@@ -16,8 +16,8 @@ public abstract class BaseController  implements AppConstants {
 
     protected BaseResponse processNewRequest(BaseRequest request) {
 
-        LOGGER.info(request.getRequestAction()
-                +" request received. Request body: " + request.toString());
+//        LOGGER.info(request.getRequestAction()
+//                +" request received. Request body: " + request.toString());
 
         BaseResponse response= null;//serviceFacade.processRequest(request);
 

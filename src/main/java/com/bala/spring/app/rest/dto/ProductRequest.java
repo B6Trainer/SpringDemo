@@ -10,7 +10,9 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 @Getter
+
 public class ProductRequest extends BaseRequest {
+
 
     @JsonProperty("email")
     private String email;

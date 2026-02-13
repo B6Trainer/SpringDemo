@@ -1,8 +1,8 @@
 spring:
   application:
-    name: reactivate
+    name: springdemoapp
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_SCHEMA:gb_servicedb}
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_SCHEMA:springdemo}
     username: ${MYSQL_USER:springservice}
     password: ${MYSQL_PASSWORD:demo@123}
     driver-class-name: com.mysql.cj.jdbc.Driver

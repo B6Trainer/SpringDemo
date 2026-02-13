@@ -1,10 +1,8 @@
 package com.bala.spring.app.rest.controller;
 
 import com.bala.spring.app.rest.URL;
-
 import com.bala.spring.app.rest.dto.BaseResponse;
 import com.bala.spring.app.rest.dto.ProductRequest;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +18,7 @@ public class ProductController extends BaseController  {
             @RequestBody ProductRequest request
     ) {
 
-        request.setRequestAction(RA_GET_PRODUCT);
+        //request.setRequestAction(RA_GET_PRODUCT);
         return ResponseEntity.ok(processNewRequest(request));
     }
 
