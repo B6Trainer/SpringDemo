@@ -2,9 +2,9 @@ spring:
   application:
     name: springdemoapp
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_SCHEMA:springdemo}
-    username: ${MYSQL_USER:springservice}
-    password: ${MYSQL_PASSWORD:demo@123}
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_SCHEMA:springdemo} #database pubs
+    username: ${MYSQL_USER:springservice} #root
+    password: ${MYSQL_PASSWORD:demo@123} #n3u3da!
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
@@ -15,4 +15,4 @@ application:
   loglevel: INFO
 
 server:
-  port: 8080
+  port: 8081

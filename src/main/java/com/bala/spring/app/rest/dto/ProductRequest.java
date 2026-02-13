@@ -13,12 +13,13 @@ import lombok.experimental.SuperBuilder;
 
 public class ProductRequest extends BaseRequest {
 
-
     @JsonProperty("email")
     private String email;
 
+    @JsonProperty("product_name")
+    private String productName;
 
-
-
+    @JsonProperty("quantity")
+    private int quantity;
 
 }

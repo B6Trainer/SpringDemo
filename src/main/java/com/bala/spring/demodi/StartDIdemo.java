@@ -4,15 +4,16 @@ public class StartDIdemo {
 
     public static void main(String[] args) {
 
+        //IOC - Inversion of Control
         PaymentService paymentService1 = new StripePaymentService();
         StripePaymentService paymentService = new StripePaymentService();
 
         PayPalPaymentService payPalPaymentService = new PayPalPaymentService();
 
         //Dependency Injection
-        OrderService orderService = new OrderService(payPalPaymentService);
+        //OrderService orderService = new OrderService(payPalPaymentService,payPalPaymentService);
 
-        orderService.processOrder("Laptop", 4);
+        //orderService.processOrder("Laptop", 4);
 
 
     }

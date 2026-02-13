@@ -15,31 +15,32 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProductController extends BaseController  {
 
     @PostMapping("/getproduct")
-    public ResponseEntity<BaseResponse> crtLicense(
+    public ResponseEntity<BaseResponse> getProduct(
             @RequestBody ProductRequest request
     ) {
 
         //request.setRequestAction(RA_GET_PRODUCT);
         ProductResponse productResponse= ProductResponse.builder()
-                .product_id(12)
-                .product_name("Laptop")
+                .product_id(15)
+                .productName("TV")
                 .build();
 
         return ResponseEntity.ok(productResponse);
     }
 
-    @PostMapping("/updateproduct")
+    @PostMapping("/update")
     public ResponseEntity<BaseResponse> updateProduct(
             @RequestBody ProductRequest request
     ) {
 
-        //request.setRequestAction(RA_GET_PRODUCT);
         ProductResponse productResponse= ProductResponse.builder()
                 .product_id(12)
-                .product_name("Laptop")
+                .productName(request.getProductName())
+                .quantity(request.getQuantity())
+                .cost(request.getQuantity() * 20.0)
                 .build();
-
-        return ResponseEntity.ok(processNewRequest(request));
+        return ResponseEntity.ok(productResponse);
+        //return ResponseEntity.ok(processNewRequest(request));
     }
 
 

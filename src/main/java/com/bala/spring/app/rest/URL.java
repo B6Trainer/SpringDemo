@@ -6,6 +6,6 @@ public interface URL {
     String TC_VERSION = "v1";
     String BASE_URL = "/"+THIN_CLIENT_PREFIX+"/"+ TC_VERSION;
 
-    String SECURED_PRD_URL = BASE_URL+"/prd";
+    String SECURED_PRD_URL = BASE_URL+"/product";
     String SECURED_PAYMENT_URL = BASE_URL+"/payment";
 }

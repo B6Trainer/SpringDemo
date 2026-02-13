@@ -1,5 +1,10 @@
 package com.bala.spring.demodi;
 
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
+@Service
 public class StripePaymentService implements PaymentService {
 
     @Override
