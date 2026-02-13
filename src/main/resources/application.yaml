@@ -12,7 +12,7 @@ spring:
 
 application:
   logFilePath: ${SUPPORT_VOLUME:E:\\devlab\\springlogs\\}
-  loglevel: DEBUG
+  loglevel: INFO
 
 server:
-  port: 8083
+  port: 8080
