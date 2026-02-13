@@ -1,4 +1,4 @@
-package com.bala.reactivate.demodi;
+package com.bala.spring.demodi;
 
 public class StripePaymentService implements PaymentService {
 

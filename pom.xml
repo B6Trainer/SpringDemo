@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.bala</groupId>
-	<artifactId>reactivate</artifactId>
+	<artifactId>basicspring</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>reactivate</name>
-	<description>Spring Boot project for demo</description>
+	<name>basicspring</name>
+	<description>Spring Boot project for beginners</description>
 	<url/>
 	<licenses>
 		<license/>
