@@ -1,11 +1,11 @@
 package com.bala.spring.app.rest.controller;
 
-import com.bala.spring.app.dao.entity.ProductEntity;
-import com.bala.spring.app.dao.repo.ProductRepository;
 import com.bala.spring.app.rest.URL;
 import com.bala.spring.app.rest.dto.BaseResponse;
+import com.bala.spring.app.rest.dto.ProductDTO;
 import com.bala.spring.app.rest.dto.ProductRequest;
 import com.bala.spring.app.rest.dto.ProductResponse;
+import com.bala.spring.app.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,17 +13,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 @RestController
 @RequestMapping(URL.SECURED_PRD_URL)
 public class ProductController extends BaseController  {
 
     @Autowired
-    ProductRepository productRepository;
+    ProductService productService;
 
     @PostMapping("/getproduct")
     public ResponseEntity<BaseResponse> getProduct(
@@ -34,18 +29,8 @@ public class ProductController extends BaseController  {
         if(email == null || email.isEmpty()){
             throw new IllegalArgumentException("Email is required");
         }
-        //request.setRequestAction(RA_GET_PRODUCT);
-        String productId = request.getProductId();
-        Optional<ProductEntity> productEntityOptional = productRepository.findByProductId(productId);//"PRD-123"
 
-
-        ProductResponse productResponse= ProductResponse.builder().build();
-        productEntityOptional.ifPresent(entity -> {
-            productResponse.setProduct_id(entity.getProductId());
-            productResponse.setProductName(entity.getProductName());
-            productResponse.setCost(entity.getAmount());
-        });
-
+        ProductResponse productResponse= productService.getProduct(request);
         return ResponseEntity.ok(productResponse);
     }
 
@@ -54,22 +39,7 @@ public class ProductController extends BaseController  {
             @RequestBody ProductRequest request
     ) {
 
-        String productId = request.getProductId();
-        Optional<ProductEntity> productEntityOptional = productRepository.findByProductId(productId);//"PRD-123"
-
-        if(productEntityOptional.isEmpty()){
-            throw new IllegalArgumentException("Product not found for id: " + productId);
-        }
-
-        ProductEntity entity = productEntityOptional.get();
-        entity.setQuantity(request.getQuantity());
-        productRepository.save(entity);
-
-        ProductResponse productResponse= ProductResponse.builder().build();
-            productResponse.setProduct_id(entity.getProductId());
-            productResponse.setProductName(entity.getProductName());
-            productResponse.setCost(entity.getAmount());
-            productResponse.setQuantity(entity.getQuantity());
+        ProductResponse productResponse= productService.updateProduct(request);
 
         return ResponseEntity.ok(productResponse);
 
@@ -80,23 +50,8 @@ public class ProductController extends BaseController  {
             @RequestBody ProductRequest request
     ) {
 
-        ProductEntity entity = ProductEntity.builder()
-                .productId(request.getProductId())
-                .productName(request.getProductName())
-                .amount(request.getAmount())
-                .quantity(request.getQuantity())
-                .type(request.getType())
-                .category(request.getCategory())
-                .description(request.getDescription())
-                .build();
-
-
-        productRepository.save(entity);
-
-        List<ProductEntity> entities = new ArrayList<>();
-        productRepository.saveAll(entities);
-
-        return ResponseEntity.ok(entity);
+        ProductDTO productDTO = productService.insertProduct(request);
+        return ResponseEntity.ok(productDTO);
 
     }
 
