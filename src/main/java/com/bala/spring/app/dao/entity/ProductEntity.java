@@ -32,6 +32,6 @@ public class ProductEntity {
 
   @Column(columnDefinition = "DECIMAL(19, 4) DEFAULT 0.0")
   private BigDecimal amount;
-
+  private Integer quantity;
 
 }

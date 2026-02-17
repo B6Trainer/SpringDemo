@@ -18,6 +18,9 @@ public class ProductRequest extends BaseRequest {
     @JsonProperty("email")
     private String email;
 
+    @JsonProperty("api_key")
+    private String apiKey;
+
     @JsonProperty("product_name")
     private String productName;
 

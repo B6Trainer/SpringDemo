@@ -14,7 +14,7 @@ public class ProductResponse extends BaseResponse implements ResponseBody {
 
 
   @JsonProperty("product_id")
-  private int product_id;
+  private String product_id;
 
   @JsonProperty("product_name")
   private String productName;

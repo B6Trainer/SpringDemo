@@ -13,14 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(URL.SECURED_PRD_URL)
-public class ProductController extends BaseController  {
+@RequestMapping(URL.SECURED_PRD_URL_API)
+public class ApiProductController extends BaseController  {
 
     @Autowired
     ProductRepository productRepository;
@@ -30,11 +27,11 @@ public class ProductController extends BaseController  {
             @RequestBody ProductRequest request
     ) {
 
-        String email = request.getEmail();
-        if(email == null || email.isEmpty()){
-            throw new IllegalArgumentException("Email is required");
+        String apiKey = request.getApiKey();
+        if(apiKey == null || apiKey.isEmpty()){
+            throw new IllegalArgumentException("API Key is required");
         }
-        //request.setRequestAction(RA_GET_PRODUCT);
+
         String productId = request.getProductId();
         Optional<ProductEntity> productEntityOptional = productRepository.findByProductId(productId);//"PRD-123"
 
@@ -54,25 +51,14 @@ public class ProductController extends BaseController  {
             @RequestBody ProductRequest request
     ) {
 
-        String productId = request.getProductId();
-        Optional<ProductEntity> productEntityOptional = productRepository.findByProductId(productId);//"PRD-123"
-
-        if(productEntityOptional.isEmpty()){
-            throw new IllegalArgumentException("Product not found for id: " + productId);
-        }
-
-        ProductEntity entity = productEntityOptional.get();
-        entity.setQuantity(request.getQuantity());
-        productRepository.save(entity);
-
-        ProductResponse productResponse= ProductResponse.builder().build();
-            productResponse.setProduct_id(entity.getProductId());
-            productResponse.setProductName(entity.getProductName());
-            productResponse.setCost(entity.getAmount());
-            productResponse.setQuantity(entity.getQuantity());
-
+        ProductResponse productResponse= ProductResponse.builder()
+                .product_id("12")
+                .productName(request.getProductName())
+                .quantity(request.getQuantity())
+                //.cost(request.getQuantity() )
+                .build();
         return ResponseEntity.ok(productResponse);
-
+        //return ResponseEntity.ok(processNewRequest(request));
     }
 
     @PostMapping("/insert")
@@ -80,11 +66,11 @@ public class ProductController extends BaseController  {
             @RequestBody ProductRequest request
     ) {
 
+
         ProductEntity entity = ProductEntity.builder()
-                .productId(request.getProductId())
+                .productId("PRD-123")
                 .productName(request.getProductName())
                 .amount(request.getAmount())
-                .quantity(request.getQuantity())
                 .type(request.getType())
                 .category(request.getCategory())
                 .description(request.getDescription())
@@ -93,11 +79,8 @@ public class ProductController extends BaseController  {
 
         productRepository.save(entity);
 
-        List<ProductEntity> entities = new ArrayList<>();
-        productRepository.saveAll(entities);
-
         return ResponseEntity.ok(entity);
-
+        //return ResponseEntity.ok(processNewRequest(request));
     }
 
 
