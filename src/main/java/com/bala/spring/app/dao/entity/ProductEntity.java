@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+
 @Entity
 @Table(name = "dm_product")
 public class ProductEntity {
@@ -21,6 +22,7 @@ public class ProductEntity {
   @GeneratedValue
   private Integer id;
   private String productId;
+  private String productName;
 
   private String category;
   private String type;
@@ -30,7 +32,6 @@ public class ProductEntity {
 
   @Column(columnDefinition = "DECIMAL(19, 4) DEFAULT 0.0")
   private BigDecimal amount;
-
 
 
 }

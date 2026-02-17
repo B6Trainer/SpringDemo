@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
 
+import java.math.BigDecimal;
+
 @Data
 @EqualsAndHashCode(callSuper = false)
 @SuperBuilder
@@ -21,7 +23,7 @@ public class ProductResponse extends BaseResponse implements ResponseBody {
   private int quantity;
 
   @JsonProperty("cost")
-  private Double cost;
+  private BigDecimal cost;
 
 
 }
